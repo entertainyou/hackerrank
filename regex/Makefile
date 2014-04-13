@@ -12,5 +12,7 @@ detect_html_tags: detect_html_tags.o
 
 detecting_valid_latitude_and_longitude: detecting_valid_latitude_and_longitude.o
 
+stack_exchange_scraper: stack_exchange_scraper.o
+
 clean:
 	@rm -f *.o
