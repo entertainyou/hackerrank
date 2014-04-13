@@ -10,5 +10,7 @@ find_hackerrank: find_hackerrank.o
 
 detect_html_tags: detect_html_tags.o
 
+detecting_valid_latitude_and_longitude: detecting_valid_latitude_and_longitude.o
+
 clean:
 	@rm -f *.o
