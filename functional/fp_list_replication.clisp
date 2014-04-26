@@ -1,0 +1,12 @@
+(defun f (n lst)
+       lst)
+
+(defun read-list ()
+    (let ((n (read *standard-input* nil)))
+        (if (null n)
+            nil
+            (cons n (read-list)))))
+
+;; (princ (read *standard-input* nil))
+;; (princ (read-list))
+(format t "~{~d~%~}" (f (read) (read-list)))
