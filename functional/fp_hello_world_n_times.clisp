@@ -1,0 +1,3 @@
+(let ((n (read)))
+  (dotimes (counter n)
+    (format t "~a~%" "Hello World")))
