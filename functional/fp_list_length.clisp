@@ -1,0 +1,9 @@
+(defun count-length ()
+  (defun count-length-internal (len)
+    (let ((n (read *standard-input* nil)))
+      (if (null n)
+          len
+          (count-length-internal (+ len 1)))))
+  (count-length-internal 0))
+
+(format t "~a~%" (count-length))
