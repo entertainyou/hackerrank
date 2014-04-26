@@ -1,0 +1,14 @@
+(defun read-list ()
+  (let ((n (read *standard-input* nil)))
+    (if (null n)
+        nil
+        (cons n (read-list)))))
+
+(defun my-reverse (lst)
+  (defun my-reverse-internal (lst acc)
+    (if (null lst)
+        acc
+        (my-reverse-internal (cdr lst) (cons (car lst) acc))))
+  (my-reverse-internal lst '()))
+
+(format t "~{~d~%~}" (my-reverse (read-list)))
