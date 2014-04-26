@@ -1,0 +1,16 @@
+(defun filter-array (X lst)
+  (defun filter-array-internal (X lst acc)
+    (if (null lst)
+        (reverse acc)
+        (if (<= X (car lst))
+            (filter-array-internal X (cdr lst) acc)
+            (filter-array-internal X (cdr lst) (cons (car lst) acc)))))
+  (filter-array-internal X lst '()))
+
+(defun read-list ()
+  (let ((n (read *standard-input* nil)))
+    (if (null n)
+        nil
+        (cons n (read-list)))))
+
+(format t "~{~d~%~}"(filter-array (read) (read-list)))
