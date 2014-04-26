@@ -13,4 +13,13 @@
         nil
         (cons n (read-list)))))
 
-(format t "~{~d~%~}"(filter-array (read) (read-list)))
+;; (format t "~{~d~%~}"(filter-array (read) (read-list)))
+
+(defvar a 10)
+
+(format t "~a~%"
+        (reduce (lambda (a b)
+                  (if (= (rem b 2) 0)
+                      a
+                      (+ a b)))
+                '(1 2 3 4 5 6 7)))

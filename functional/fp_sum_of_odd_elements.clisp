@@ -1,0 +1,22 @@
+(defun read-list ()
+  (let ((n (read *standard-input* nil)))
+    (if (null n)
+        nil
+        (cons n (read-list)))))
+
+;; (defun sum-of-odd (lst)
+;;   (defun sum-of-odd-internal (lst acc)
+;;     (if (null lst)
+;;         acc
+;;         (if (= (rem (car lst) 2) 0)
+;;             (sum-of-odd-internal (cdr lst) acc)
+;;             (sum-of-odd-internal (cdr lst) (+ acc (car lst))))))
+;;   (sum-of-odd-internal lst 0))
+
+(defun sum-of-odds (lst)
+  (reduce (lambda (a b)
+            (if (= (rem b 2) 0)
+                a
+                (+ a b))) lst))
+
+(format t "~a~%" (sum-of-odds (read-list)))
