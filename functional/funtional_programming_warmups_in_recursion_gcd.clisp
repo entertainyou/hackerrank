@@ -1,0 +1,8 @@
+(defun my-gcd (n m)
+  (let ((reminder (rem n m)))
+    (if (= reminder 0)
+        m
+        (my-gcd m reminder))))
+
+(format t "~a~%" (my-gcd (read) (read)))
+

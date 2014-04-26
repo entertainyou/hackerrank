@@ -1,0 +1,12 @@
+(defun fibonacci-number (n)
+  (defun fibonacci-number-internal (n first second)
+    (if (= n 3)
+        (+ first second)
+        (fibonacci-number-internal (- n 1) second (+ first second))))
+  (if (= n 1)
+      0
+      (if (= n 2)
+          1
+          (fibonacci-number-internal n 0 1))))
+
+(format t "~a~%" (fibonacci-number (read)))
