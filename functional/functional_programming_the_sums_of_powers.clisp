@@ -1,0 +1,16 @@
+(defun the-sums-of-powers-number (n p)
+  (defun internal (n p _max)
+    ;; (format t "~a ~a ~a ~%" n p _max)
+    (cond
+      ((= n 0) 1)
+      ((< n 0) 0)
+      ((and (= _max 1) (= n 1)) 1)
+      ((= _max 1) 0)
+      (t (let* ((remain (- n (expt _max p)))
+                (new-max (floor (expt remain (/ 1 p)))))
+           (+ (internal remain p (min new-max (- _max 1)))
+              (internal n p (- _max 1)))))))
+  (internal n p (floor (expt n (/ 1 p)))))
+
+;; (the-sums-of-powers-number 20 2)
+(format t "~a~%" (the-sums-of-powers-number (read) (read)))
