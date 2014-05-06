@@ -22,8 +22,7 @@ static int intcomp(const void *v1, const void *v2) {
     return *(const int *)v1 - *(const int *)v2;
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     
     return 0;
 }
