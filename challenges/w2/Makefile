@@ -1,6 +1,4 @@
-CFLAGS = -std=c99 -Wall -g
-
-manasa_and_stones:
+CFLAGS = -std=c99 -Wall -g -Wno-unused-function
 
 clean:
 	@rm -f *.o
