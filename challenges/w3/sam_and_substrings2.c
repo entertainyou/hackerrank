@@ -43,11 +43,12 @@ static void make_cache(long long int *cache, int size, int base, int m) {
 
 static long long int solve(const char *buffer, int mod) {
     int size = strlen(buffer);
-    int *sum = calloc(size, sizeof(int));
+    int *sum = calloc(size, sizeof(long long int));
 
-    int sum_now = 0;
+    long long int sum_now = 0;
     for (int i = 0; i < size; ++i) {
-        sum_now = sum_now + (i + 1) * (buffer[i] - '0');
+        sum_now += (i + 1) * (buffer[i] - '0');
+        sum_now %= mod;
         sum[size - 1 - i] = sum_now;
     }
 
