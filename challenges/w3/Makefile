@@ -1,4 +1,4 @@
-CFLAGS = -Wall -std=c99 -g
+CFLAGS = -Wall -std=c99 -lm -O3
 
 clean:
 	@rm -f *.o
