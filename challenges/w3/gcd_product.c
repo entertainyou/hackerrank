@@ -49,7 +49,7 @@ struct prime_info {
     long long int count;
 };
 
-static long long int power_mod(int i, int n, int m) {
+static long long int power_mod(int i, long long int n, int m) {
     if (n == 0)
         return 1;
 
