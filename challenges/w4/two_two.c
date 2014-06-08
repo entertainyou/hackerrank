@@ -24,37 +24,26 @@ static int intcomp(const void *v1, const void *v2) {
 
 #define BASE 801
 static char powers[BASE][250];
-static int power_nums[801];
 
 static void build_powers() {
     powers[0][0] = '1';
     powers[0][1] = '\0';
-    power_nums[0] = 1;
 
     for (int i = 1; i <= 800; ++i) {
-        int previous = power_nums[i - 1];
-        char *ppower  = powers[i - 1];
-        int start_pos = previous;
-        if (ppower[0] >= '5') {
-            start_pos ++;
-        }
-
-        power_nums[i] = start_pos;
-
-        char *current = powers[i];
-        current[start_pos] = '\0';
         int rem = 0;
-        for (int j = previous - 1; j >= 0; --j) {
-            int val = (ppower[j] - '0') * 2 + rem;
+        int j;
+        for (j = 0; powers[i - 1][j] != '\0'; ++j) {
+            int val = 2 * (powers[i - 1][j] - '0') + rem;
+            powers[i][j] = '0' + (val % 10);
             rem = val / 10;
-            current[start_pos - 1] = '0' + (val % 10);
-            start_pos --;
         }
 
         if (rem != 0) {
-            /* assert(start_pos == 1); */
-            current[0] = '0' + rem;
+            powers[i][j] = '0' + rem;
+            j++;
         }
+
+        powers[i][j] = '\0';
     }
 }
 
@@ -86,16 +75,19 @@ static struct node *build_node() {
 
 static long long int solve(char *buffer, struct node *root) {
     long long result = 0;
-    for (char *iter = buffer; *iter; ++iter) {
+    size_t len = strlen(buffer);
+
+    for (int i = len - 1; i >= 0; --i) {
         struct node *n = root;
-        for (char *iter2 = iter; *iter2; ++iter2) {
+        for (int j = i; j >= 0; --j) {
+            /* i -> j */
             if (!n->childs) {
-                /* previous is the end */
+                /* previous is an end */
                 break;
             } else {
-                n = &n->childs[*iter2 - '0'];
+                n = &n->childs[buffer[j] - '0'];
                 if (n->end) {
-                    result++;
+                    result ++;
                 }
             }
         }
